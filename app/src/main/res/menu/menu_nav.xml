@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:title="CatatanKu"
+        android:icon="@drawable/ic_catatan"
+        android:id="@+id/bt_catatan"
+        />
+    <item
+        android:title="KeuanganKu"
+        android:icon="@drawable/ic_dompet"
+        android:id="@+id/bt_keuangan"
+        />
+</menu>
