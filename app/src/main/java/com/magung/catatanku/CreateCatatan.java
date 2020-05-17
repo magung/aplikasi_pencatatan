@@ -55,20 +55,24 @@ public class CreateCatatan extends DialogFragment {
                         judul = String.valueOf(met_judul.getText());
                         catatan = String.valueOf(met_catatan.getText());
 
-                        catatanArrayList.add(
-                                new Catatan(judul, catatan)
-                        );
+                        if(judul.equals("") || catatan.equals("")){
+                            Toast.makeText(getActivity(), "Data Kurang Lengkap",Toast.LENGTH_SHORT).show();
+                        }else{
+                            catatanArrayList.add(
+                                    new Catatan(judul, catatan)
+                            );
 
-                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
-                        SharedPreferences.Editor editor = prefs.edit();
-                        Gson gson = new Gson();
-                        String json = gson.toJson(catatanArrayList);
-                        editor.putString("sp_list_catatan", json);
-                        editor.apply();
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+                            SharedPreferences.Editor editor = prefs.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(catatanArrayList);
+                            editor.putString("sp_list_catatan", json);
+                            editor.apply();
 
-                        Toast.makeText(getActivity(),
-                                judul + " berhasil disimpan",
-                                Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),
+                                    judul + " berhasil disimpan",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
                 .setNegativeButton("BATAL", new DialogInterface.OnClickListener() {

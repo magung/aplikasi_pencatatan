@@ -56,25 +56,32 @@ public class CreateKeuangan extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                             String catatan, jenis;
                             int jumlah;
-                            catatan = String.valueOf(etCatatan.getText());
-                            jumlah = Integer.parseInt(String.valueOf(etJumlah.getText()));
-                            jenis = mspJenis.getSelectedItem().toString();
-
-                            keuanganArrayList.add(
-                                    new Keuangan(catatan, jumlah, jenis)
-                            );
-
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
-                            SharedPreferences.Editor editor = prefs.edit();
-                            Gson gson = new Gson();
-                            String json = gson.toJson(keuanganArrayList);
-                            editor.putString("sp_list_keuangan", json);
-                            editor.apply();
+                            if(etCatatan.getText().toString().equals("") || etJumlah.getText().toString().equals("")) {
+                                Toast.makeText(getActivity(), "Data Kurang Lengkap",Toast.LENGTH_SHORT).show();
+                            } else {
+                                catatan = String.valueOf(etCatatan.getText());
+                                jumlah = Integer.parseInt(String.valueOf(etJumlah.getText()));
+                                jenis = mspJenis.getSelectedItem().toString();
 
 
-                            Toast.makeText(getActivity(),
-                                    catatan + " berhasil disimpan",
-                                    Toast.LENGTH_SHORT).show();
+
+                                keuanganArrayList.add(
+                                        new Keuangan(catatan, jumlah, jenis)
+                                );
+
+                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+                                SharedPreferences.Editor editor = prefs.edit();
+                                Gson gson = new Gson();
+                                String json = gson.toJson(keuanganArrayList);
+                                editor.putString("sp_list_keuangan", json);
+                                editor.apply();
+
+
+                                Toast.makeText(getActivity(),
+                                        catatan + " berhasil disimpan",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
 
 
                     }
